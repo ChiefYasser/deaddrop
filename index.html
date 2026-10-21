@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dead Drop 09</title>
+<meta name="description" content="DEAD DROP 09 is a fictional intelligence archive you walk into. Decode a signal, reconstruct a room, find the hour that went missing. A work of interactive fiction.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080A09'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23879D89' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23F3F4EF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/stage.css">
+</head>
+<body class="scene-boot">
+<h1 class="sr">Dead Drop 09: an interactive fictional investigation archive</h1>
+<noscript><p style="padding:40px;font-family:monospace;color:#ccc">DEAD DROP 09 needs JavaScript. It is an interactive work of fiction.</p></noscript>
+
+<!-- THE ROOM -->
+<div class="stage" id="stage">
+  <div class="room" id="room">
+    <video id="room-video" autoplay muted loop playsinline preload="auto" poster="assets/poster.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- cold open -->
+  <div class="boot" id="boot">
+    <p class="boot-id mono">DEAD DROP <b id="wm-09">09</b></p>
+    <p class="boot-line">An interactive work of fiction.<br>Every case is invented.</p>
+    <div class="boot-btns">
+      <button type="button" class="btn btn-primary" id="enter-sound">ENTER WITH SOUND</button>
+      <button type="button" class="btn" id="enter-silent">ENTER SILENT</button>
+    </div>
+    <p class="boot-note mono">HEADPHONES RECOMMENDED · KEYBOARD OPTIONAL</p>
+  </div>
+
+  <!-- story captions -->
+  <div class="caption" id="caption" aria-live="polite"></div>
+
+  <div class="stage-ui mono" id="stage-ui" hidden>
+    <button type="button" id="stage-sound" class="ui-btn" aria-pressed="false">SOUND OFF</button>
+    <span class="beats" id="beats" aria-hidden="true"></span>
+    <button type="button" id="stage-skip" class="ui-btn">SKIP ›</button>
+  </div>
+  <p class="advance mono" id="advance" hidden>CLICK · SPACE · →</p>
+</div>
+
+<!-- THE MONITOR -->
+<div class="crt" id="crt" hidden>
+  <div class="crt-screen" id="crt-screen">
+    <header class="crt-top mono">
+      <span class="crt-id">DEAD DROP <b id="wm-09-b" class="knock-target">09</b><span> · SESSION 09</span></span>
+      <span class="crt-meta"><span id="crt-count">006 / 009 INDEXED</span><span id="clock">03:12:07</span>
+        <button type="button" id="crt-sound" class="ui-btn" aria-pressed="false">SOUND OFF</button></span>
+    </header>
+
+    <section class="brief" id="brief" aria-label="Orientation"></section>
+
+    <section class="dir" id="dir" hidden aria-label="Case files">
+      <div class="dir-col">
+        <div class="dir-list" id="dir-list" role="listbox" aria-label="Cases"></div>
+        <p class="dir-status mono" id="dir-status" aria-live="polite"></p>
+      </div>
+      <aside class="dir-prev" id="dir-prev" aria-live="polite"></aside>
+    </section>
+
+    <div class="term-out mono" id="term-out" role="log" aria-live="polite" aria-label="Terminal output"></div>
+    <form class="term-form mono" id="term-form" autocomplete="off">
+      <label for="term-in" class="prompt" aria-label="Command prompt">›</label>
+      <input id="term-in" type="text" enterkeyhint="send" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="enter opens the file · / searches · help" aria-describedby="term-hint">
+    </form>
+    <p class="keys mono" id="term-hint">↑↓ SELECT · ENTER OPEN · /TEXT SEARCH · CTRL+↑ HISTORY · HELP</p>
+  </div>
+</div>
+
+<!-- CASE VIEW OVERLAY -->
+<div class="caseview" id="caseview" role="dialog" aria-modal="true" aria-labelledby="cv-title" hidden>
+  <div class="cv-scroll" id="cv-scroll" tabindex="-1"></div>
+</div>
+
+<!-- GENERIC DOCUMENT OVERLAY (secrets) -->
+<div class="docview" id="docview" role="dialog" aria-modal="true" aria-labelledby="doc-title" hidden>
+  <div class="doc-card paper" id="doc-card"></div>
+</div>
+
+<div class="lantern-mask" id="lantern-mask" aria-hidden="true"></div>
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+<script src="js/store.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/cases.js"></script>
+<script src="js/archive.js"></script>
+<script src="js/caseview.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/story.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
